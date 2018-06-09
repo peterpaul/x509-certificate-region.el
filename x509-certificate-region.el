@@ -90,6 +90,6 @@
 		(point-max))))
     (x509-view-region-as-x509-certificate beg end)))
 
-(provide 'x509-certificate)
+(provide 'x509-certificate-region)
 
 ;;; x509-certificate-region.el ends here
