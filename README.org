@@ -1,0 +1,35 @@
+* Installation
+Since this package is not (yet) published on MELPA, the easiest
+way to install it is directly from the git sources. For example
+by using straight or quelpa.
+
+The below snippets both install x509-certificate-region and use
+use-package to register two key-bindings for the two main
+functions.
+
+** With straight and use-package
+
+#+CAPTION: init.el configuration with use-package and straight
+#+BEGIN_SRC elisp
+(use-package x509-certificate-region
+  :straight
+  (x509-certificate-region
+   :type git
+   :host github
+   :repo "peterpaul/x509-certificate-region.el")
+  :bind (("C-x x x" . x509-view-xml-element-as-x509-certificate)
+         ("C-x x r" . x509-view-region-as-x509-certificate)))
+#+END_SRC
+
+** With quelpa-use-package
+
+#+CAPTION: init.el configuration with quelpa-use-package
+#+BEGIN_SRC elisp
+(use-package x509-certificate-region
+  :quelpa
+  (x509-certificate-region
+   :fetcher github
+   :repo "peterpaul/x509-certificate-region.el")
+  :bind (("C-x x x" . x509-view-xml-element-as-x509-certificate)
+         ("C-x x r" . x509-view-region-as-x509-certificate)))
+#+END_SRC
