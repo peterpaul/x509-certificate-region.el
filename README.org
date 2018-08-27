@@ -1,11 +1,31 @@
+#+TITLE: X509 Certificate Region
+#+OPTIONS: toc:2
+
+* Introduction
+This package provides some functions to quickly view the details
+of a certificate using [[https://github.com/jobbflykt/x509-mode][x509-mode]].
+This is mainly useful when the Base64-, DER encoded data of a
+certificate is enclosed in a larger file, like an XML file.
+
+- =x509-view-region-as-x509-certificate=: Interpret the current
+  region as X509 certificate.
+- =x509-view-xml-element-as-x509-certificate=: Interpret the
+  current XML element under the point as X509 certificate.
+
+These functions will create a temporary buffer containing the
+certificate data, prepend/append =----- BEGIN/END CERTIFICATE-----=
+and display the buffer using =x509-mode=, which shows the
+=openssl= output in a read-only buffer. This buffer can be closed
+by pressing =q=.
+
 * Installation
 Since this package is not (yet) published on MELPA, the easiest
 way to install it is directly from the git sources. For example
-by using straight or quelpa.
+by using =straight= or =quelpa=.
 
-The below snippets both install x509-certificate-region and use
-use-package to register two key-bindings for the two main
-functions.
+The below snippets both use =use-package= to install
+=x509-certificate-region= and to register key-bindings for the
+main functions.
 
 ** With straight and use-package
 
