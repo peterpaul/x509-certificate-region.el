@@ -76,10 +76,12 @@
 
 (defun x509-view-paragraph-as-x509-certificate ()
   "Try to view the current paragraph as x509 certificate."
-  (interactive (list (point)))
+  (interactive)
   (save-excursion
     (mark-paragraph)
-    (x509-view-region-as-x509-certificate)))
+    (x509-view-region-as-x509-certificate
+     (region-beginning)
+     (region-end))))
 
 (defun x509-view-xml-element-as-x509-certificate (pos)
   "Try to view the xml element at POS as x509 certificate."

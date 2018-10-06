@@ -11,6 +11,8 @@ certificate is enclosed in a larger file, like an XML file.
   region as X509 certificate.
 - =x509-view-xml-element-as-x509-certificate=: Interpret the
   current XML element under the point as X509 certificate.
+- =x509-view-paragraph-as-x509-certificate=: Interpret the
+  current paragraph as X509 certificate.
 
 These functions will create a temporary buffer containing the
 certificate data, prepend/append =----- BEGIN/END CERTIFICATE-----=
@@ -38,7 +40,8 @@ main functions.
    :host github
    :repo "peterpaul/x509-certificate-region.el")
   :bind (("C-x x x" . x509-view-xml-element-as-x509-certificate)
-         ("C-x x r" . x509-view-region-as-x509-certificate)))
+         ("C-x x r" . x509-view-region-as-x509-certificate)
+	 ("C-x x p" . x509-view-paragraph-as-x509-certificate)))
 #+END_SRC
 
 ** With quelpa-use-package
@@ -51,5 +54,6 @@ main functions.
    :fetcher github
    :repo "peterpaul/x509-certificate-region.el")
   :bind (("C-x x x" . x509-view-xml-element-as-x509-certificate)
-         ("C-x x r" . x509-view-region-as-x509-certificate)))
+         ("C-x x r" . x509-view-region-as-x509-certificate)
+	 ("C-x x p" . x509-view-paragraph-as-x509-certificate)))
 #+END_SRC
