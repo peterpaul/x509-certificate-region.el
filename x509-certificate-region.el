@@ -69,6 +69,7 @@
 	(insert "\n-----END CERTIFICATE-----\n")
 	(x509--prepare-certificate-buffer)
 	(deactivate-mark)
+        (delete-duplicate-lines (point-min) (point-max))
 	(x509-viewcert (format "x509 -sha256 -fingerprint -text -noout -inform %s"
 			       (x509--buffer-encoding))))
       (kill-buffer cert-buffer)
