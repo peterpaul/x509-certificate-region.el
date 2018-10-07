@@ -77,11 +77,13 @@
 (defun x509-view-paragraph-as-x509-certificate ()
   "Try to view the current paragraph as x509 certificate."
   (interactive)
-  (save-excursion
-    (mark-paragraph)
-    (x509-view-region-as-x509-certificate
-     (region-beginning)
-     (region-end))))
+    (let ((beg 0)
+          (end 0))
+      (save-mark-and-excursion
+        (mark-paragraph)
+        (setq beg (region-beginning)
+              end (region-end)))
+    (x509-view-region-as-x509-certificate beg end)))
 
 (defun x509-view-xml-element-as-x509-certificate (pos)
   "Try to view the xml element at POS as x509 certificate."
