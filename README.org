@@ -7,6 +7,8 @@ of a certificate using [[https://github.com/jobbflykt/x509-mode][x509-mode]].
 This is mainly useful when the Base64-, DER encoded data of a
 certificate is enclosed in a larger file, like an XML file.
 
+- =x509-view-certificate=: View the X509 certificate under
+  the point.
 - =x509-view-region-as-x509-certificate=: Interpret the current
   region as X509 certificate.
 - =x509-view-xml-element-as-x509-certificate=: Interpret the
@@ -39,7 +41,8 @@ main functions.
    :type git
    :host github
    :repo "peterpaul/x509-certificate-region.el")
-  :bind (("C-x x x" . x509-view-xml-element-as-x509-certificate)
+  :bind (("C-x x c" . x509-view-certificate)
+         ("C-x x x" . x509-view-xml-element-as-x509-certificate)
          ("C-x x r" . x509-view-region-as-x509-certificate)
          ("C-x x p" . x509-view-paragraph-as-x509-certificate)))
 #+END_SRC
@@ -53,7 +56,8 @@ main functions.
   (x509-certificate-region
    :fetcher github
    :repo "peterpaul/x509-certificate-region.el")
-  :bind (("C-x x x" . x509-view-xml-element-as-x509-certificate)
+  :bind (("C-x x c" . x509-view-certificate)
+         ("C-x x x" . x509-view-xml-element-as-x509-certificate)
          ("C-x x r" . x509-view-region-as-x509-certificate)
          ("C-x x p" . x509-view-paragraph-as-x509-certificate)))
 #+END_SRC

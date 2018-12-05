@@ -102,6 +102,20 @@
 		(point-max))))
     (x509-view-region-as-x509-certificate beg end)))
 
+(defun x509-view-certificate (pos)
+  "Try to view the x509 certificate at POS."
+  (interactive
+   (list (point)))
+  (let ((beg (or (save-excursion
+                  (when (search-backward "-----BEGIN CERTIFICATE-----\n" nil t)
+                    (point)))
+                (point-min)))
+	(end (or (save-excursion
+                  (when (search-forward "-----END CERTIFICATE-----" nil t)
+                    (point)))
+                (point-max))))
+    (x509-view-region-as-x509-certificate beg end)))
+
 (provide 'x509-certificate-region)
 
 ;;; x509-certificate-region.el ends here
