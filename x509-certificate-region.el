@@ -53,13 +53,16 @@
   (x509--replace-all  "[[:blank:]]+$" "")
   (x509--replace-all  "\n+" "\n"))
 
-(defun x509-view-region-as-x509-certificate (beg end)
+(defun x509-view-region-as-x509-certificate (beg end &optional command)
   "Try to view the region marked by BEG and END as x509 certificate."
   (interactive
    (list (region-beginning) (region-end)))
+  (setq command (if command command "openssl x509 -sha256 -fingerprint -text -noout"))
   (save-excursion
     (let ((cert-buffer (get-buffer-create
-			(format "*certificate from '%s'*" (buffer-name)))))
+			(format "*certificate from '%s'*" (buffer-name))))
+          (openssl-buffer (get-buffer-create
+                           (format "*openssl output for '%s'*" (buffer-name)))))
       (copy-to-buffer cert-buffer beg end)
       (with-current-buffer cert-buffer
 	(barf-if-buffer-read-only)
@@ -70,9 +73,13 @@
 	(x509--prepare-certificate-buffer)
 	(deactivate-mark)
         (delete-duplicate-lines (point-min) (point-max))
-	(x509-viewcert (format "x509 -sha256 -fingerprint -text -noout -inform %s"
-			       (x509--buffer-encoding))))
+        (shell-command-on-region (point-min)
+                                 (point-max)
+                                 command
+                                 openssl-buffer))
       (kill-buffer cert-buffer)
+      (with-current-buffer openssl-buffer
+        (x509-mode))
       )))
 
 (defun x509-view-paragraph-as-x509-certificate ()
